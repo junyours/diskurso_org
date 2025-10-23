@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+  
   <meta name="citation_issn" content="">
   <meta name="citation_publisher" content="Diskurso">
   <meta name="citation_title" content="{{ $journal->title }}">
