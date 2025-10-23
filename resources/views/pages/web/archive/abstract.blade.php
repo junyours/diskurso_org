@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-  
+
   <meta name="citation_issn" content="">
   <meta name="citation_publisher" content="Diskurso">
   <meta name="citation_title" content="{{ $journal->title }}">
@@ -32,7 +32,7 @@
 
 <body class="text-gray-800 text-sm antialiased">
   @include('components.web.navbar')
-  <main class="max-w-7xl mx-auto">
+  <main class="min-h-screen max-w-7xl mx-auto">
     @include('components.web.banner')
     <div class="flex">
       <div class="p-2 min-w-xs">
@@ -82,6 +82,7 @@
       </div>
     </div>
   </main>
+  @include('components.web.footer')
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();
