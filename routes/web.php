@@ -31,5 +31,6 @@ Route::get('/research-journal/editorial-board', [WebController::class, 'editoria
 
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}', [WebController::class, 'index'])->name('archive');
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');
+Route::get('/abstract/{title}', [WebController::class, 'abstract'])->name('abstract');
 
 require __DIR__ . '/auth.php';

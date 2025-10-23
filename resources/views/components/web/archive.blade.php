@@ -13,7 +13,7 @@
       'issue' => $archive->issue,
       'month_year' => $archive->month_year
     ]) }}"
-    class="flex items-center gap-2 border-x border-b border-gray-200 hover:bg-gray-200 p-2 hover:text-[#0048AE]">
+    class="flex items-center gap-2 border-x border-b border-gray-200 hover:bg-gray-200 p-2 hover:text-[#0048AE]  {{ request()->is("archive/volume-{$archive->volume}/issue-{$archive->issue}/{$archive->month_year}") ? 'text-[#0048AE]' : '' }}">
     <i data-lucide="circle-plus" class="size-5" stroke-width="1.5"></i>
     <span class="font-medium">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
       {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}</span>

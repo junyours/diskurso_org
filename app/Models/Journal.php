@@ -17,6 +17,8 @@ class Journal extends Model
         'abstract',
         'keyword',
         'pdf_path',
+        'doi',
+        'publication_date',
     ];
 
     public function archive()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Archive;
 use App\Models\Journal;
+use Carbon\Carbon;
 use Http;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,8 @@ class JournalController extends Controller
             'page_number' => ['required'],
             'abstract' => ['required'],
             'keyword' => ['required'],
+            'doi' => ['required'],
+            'publication_date' => ['required'],
         ]);
 
         $file = $request->file('pdf_path');
@@ -83,6 +86,10 @@ class JournalController extends Controller
                 'page_number' => $request->page_number,
                 'abstract' => $request->abstract,
                 'keyword' => $request->keyword,
+                'doi' => $request->doi,
+                'publication_date' => Carbon::parse($request->publication_date)
+                    ->timezone('Asia/Manila')
+                    ->toDateString(),
             ]);
 
             return redirect()->back();

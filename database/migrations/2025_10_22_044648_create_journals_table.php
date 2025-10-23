@@ -21,6 +21,8 @@ return new class extends Migration
             $table->longText('abstract');
             $table->string('keyword');
             $table->string('pdf_path');
+            $table->string('doi');
+            $table->date('publication_date');
             $table->timestamps();
         });
     }
