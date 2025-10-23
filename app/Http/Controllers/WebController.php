@@ -17,12 +17,12 @@ class WebController extends Controller
 
     public function aboutJournal()
     {
-        return view('pages.web.research-journal.about-journal');
+        return view('pages.web.category.about-journal');
     }
 
     public function indexing()
     {
-        return view('pages.web.research-journal.indexing');
+        return view('pages.web.category.indexing');
     }
 
     public function editorialBoard()
@@ -38,7 +38,7 @@ class WebController extends Controller
         ")
             ->get();
 
-        return view('pages.web.research-journal.editorial-board', compact('editors'));
+        return view('pages.web.category.editorial-board', compact('editors'));
     }
 
     public function index($volume, $issue, $month_year)

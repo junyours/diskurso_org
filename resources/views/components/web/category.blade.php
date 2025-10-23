@@ -1,8 +1,8 @@
-<h1 class="bg-[#790E08] text-white p-2 font-semibold uppercase">Research Journal</h1>
+<h1 class="bg-[#790E08] text-white p-2 font-semibold uppercase">Categories</h1>
 @php
   $items = [
     ['name' => 'About the Journal', 'route' => 'about-journal'],
-    ['name' => 'Indexing and Abstracting', 'route' => 'indexing'],
+    ['name' => 'Indexing', 'route' => 'indexing'],
     ['name' => 'Editorial Board', 'route' => 'editorial-board'],
   ]
 @endphp

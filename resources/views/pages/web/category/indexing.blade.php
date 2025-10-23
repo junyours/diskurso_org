@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="space-y-4">
-    <h1 class="font-bold text-lg">Indexing and Abstracting</h1>
+    <h1 class="font-bold text-lg">Indexing</h1>
     @php
       $items = [
         ['src' => 'images/indexing/1.png'],

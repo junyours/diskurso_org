@@ -6,7 +6,7 @@
     ->get();
 @endphp
 
-<h1 class="bg-[#790E08] text-white p-2 font-semibold uppercase">Monthly Archive</h1>
+<h1 class="bg-[#790E08] text-white p-2 font-semibold uppercase">Quarterly Archive</h1>
 @foreach ($archives as $archive)
   <a href="{{ route('archive', [
       'volume' => $archive->volume,

@@ -10,3 +10,28 @@
 body {
     font-family: 'Figtree', sans-serif;
 }
+
+@theme {
+    --animate-full-tl: full-tl 60s linear infinite;
+    --animate-full-tr: full-tr 60s linear infinite;
+
+    @keyframes full-tl {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-200%);
+        }
+    }
+
+    @keyframes full-tr {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(200%);
+        }
+    }
+}

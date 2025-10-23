@@ -17,9 +17,10 @@
   @include('components.web.navbar')
   <main class="min-h-screen max-w-7xl mx-auto">
     @include('components.web.banner')
+    @include('components.web.marquee')
     <div class="flex">
       <div class="p-2 min-w-xs">
-        @include('components.web.research-journal')
+        @include('components.web.category')
       </div>
       <div class="flex-1 py-2">
         @yield('content')

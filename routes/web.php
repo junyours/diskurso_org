@@ -25,9 +25,9 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 
-Route::get('/research-journal/about-journal', [WebController::class, 'aboutJournal'])->name('about-journal');
-Route::get('/research-journal/indexing', [WebController::class, 'indexing'])->name('indexing');
-Route::get('/research-journal/editorial-board', [WebController::class, 'editorialBoard'])->name('editorial-board');
+Route::get('/about-journal', [WebController::class, 'aboutJournal'])->name('about-journal');
+Route::get('/indexing', [WebController::class, 'indexing'])->name('indexing');
+Route::get('/editorial-board', [WebController::class, 'editorialBoard'])->name('editorial-board');
 
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}', [WebController::class, 'index'])->name('archive');
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');
