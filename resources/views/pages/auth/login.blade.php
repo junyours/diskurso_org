@@ -7,7 +7,7 @@
     <div class="space-y-4">
       <div class="flex w-full flex-col gap-1 text-neutral-600">
         <label for="email" class="w-fit pl-0.5 text-sm">Email Address</label>
-        <input id="email" type="email"
+        <input id="email" type="email" value="{{ old('email') }}"
           class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
           name="email" autocomplete="email" required />
         @error('email')
