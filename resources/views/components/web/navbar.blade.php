@@ -1,6 +1,7 @@
 @php
   $items = [
-    ['name' => 'Home', 'route' => 'home']
+    ['name' => 'Home', 'route' => 'home'],
+    ['name' => 'Contact Us', 'route' => 'contact-us'],
   ]
 @endphp
 <div class="hidden bg-white sm:block">
@@ -9,15 +10,22 @@
       <div class="flex items-center gap-4 text-[#790E08]">
         <div class="flex items-center gap-2">
           <i data-lucide="mail" class="size-5" stroke-width="1.5"></i>
-          <a href="mailto:ditads@infosheet.dev" class="hover:underline">ditads@infosheet.dev</a>
+          <a href="mailto:ditads@infosheet.dev" target="_blank" class="hover:underline">ditads@infosheet.dev</a>
         </div>
         <div class="flex items-center gap-2">
           <i data-lucide="phone" class="size-5" stroke-width="1.5"></i>
-          <a href="tel:09171281320" class="hover:underline">09171281320</a>
+          <a href="tel:09171281320" target="_blank" class="hover:underline">09171281320</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="map-pin" class="size-5" stroke-width="1.5"></i>
+          <a href="https://maps.app.goo.gl/WLB5KaEyTygUozGJ9" target="_blank" class="hover:underline">Metro Square R118
+            Zone 2, Iponan,
+            CDO City</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false"
   class="bg-[#0048AE] sticky top-0 z-50" aria-label="penguin ui menu">

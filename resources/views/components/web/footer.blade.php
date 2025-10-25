@@ -8,7 +8,7 @@
       </div>
       <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
         <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-800 uppercase">Follow us</h2>
+          <h2 class="mb-6 text-sm font-semibold uppercase">Follow us</h2>
           <ul class="text-gray-500 font-medium">
             <li class="mb-4">
               <a href="#" class="hover:underline">Facebook</a>
@@ -16,7 +16,18 @@
           </ul>
         </div>
         <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-800 uppercase">Legal</h2>
+          <h2 class="mb-6 text-sm font-semibold uppercase">Contact us</h2>
+          <ul class="text-gray-500 font-medium">
+            <li class="mb-4">
+              <a href="mailto:ditads@infosheet.dev" target="_blank" class="hover:underline">ditads@infosheet.dev</a>
+            </li>
+            <li class="mb-4">
+              <a href="tel:09171281320" target="_blank" class="hover:underline">09171281320</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
           <ul class="text-gray-500 font-medium">
             <li class="mb-4">
               <a href="#" class="hover:underline">Privacy Policy</a>

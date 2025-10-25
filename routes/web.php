@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [WebController::class, 'home'])->name('home');
+Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
 
 Route::get('/about-journal', [WebController::class, 'aboutJournal'])->name('about-journal');
 Route::get('/indexing', [WebController::class, 'indexing'])->name('indexing');

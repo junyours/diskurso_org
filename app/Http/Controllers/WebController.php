@@ -15,6 +15,11 @@ class WebController extends Controller
         return view('pages.web.home');
     }
 
+    public function contactUs()
+    {
+        return view('pages.web.contact-us');
+    }
+
     public function aboutJournal()
     {
         return view('pages.web.category.about-journal');

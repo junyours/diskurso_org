@@ -8,7 +8,6 @@
         ['src' => 'images/indexing/1.png'],
         ['src' => 'images/indexing/2.png'],
         ['src' => 'images/indexing/3.png'],
-        ['src' => 'images/indexing/4.png'],
         ['src' => 'images/indexing/5.png'],
         ['src' => 'images/indexing/6.png'],
         ['src' => 'images/indexing/7.png'],
@@ -19,7 +18,6 @@
         ['src' => 'images/indexing/12.png'],
         ['src' => 'images/indexing/13.png'],
         ['src' => 'images/indexing/14.png'],
-        ['src' => 'images/indexing/15.png'],
         ['src' => 'images/indexing/16.png'],
         ['src' => 'images/indexing/17.png'],
       ];
