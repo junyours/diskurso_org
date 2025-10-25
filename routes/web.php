@@ -24,11 +24,17 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [WebController::class, 'home'])->name('home');
+Route::get('/about-us', [WebController::class, 'aboutUs'])->name('about-us');
+Route::get('/editorial-board', [WebController::class, 'editorialBoard'])->name('editorial-board');
 Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
 
 Route::get('/about-journal', [WebController::class, 'aboutJournal'])->name('about-journal');
 Route::get('/indexing', [WebController::class, 'indexing'])->name('indexing');
-Route::get('/editorial-board', [WebController::class, 'editorialBoard'])->name('editorial-board');
+Route::get('/current-issue', [WebController::class, 'currentIssue'])->name('current-issue');
+Route::get('/past-issue', [WebController::class, 'pastIssue'])->name('past-issue');
+
+Route::get('/submission-guidelines', [WebController::class, 'submissionGuideline'])->name('submission-guideline');
+Route::get('/research-ethics', [WebController::class, 'researchEthics'])->name('research-ethics');
 
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}', [WebController::class, 'index'])->name('archive');
 Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');

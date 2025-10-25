@@ -37,8 +37,9 @@
     @include('components.web.banner')
     @include('components.web.marquee')
     <div class="flex flex-col md:flex-row">
-      <div class="p-2 w-full md:w-xs">
+      <div class="p-2 w-full space-y-2 md:w-xs">
         @include('components.web.category')
+        @include('components.web.download')
       </div>
       <div class="flex-1 md:py-2 max-md:px-2">
         <div class="space-y-4">
@@ -79,7 +80,8 @@
           </a>
         </div>
       </div>
-      <div class="p-2 w-full md:w-xs">
+      <div class="p-2 w-full space-y-2 md:w-xs">
+        @include('components.web.author-menu')
         @include('components.web.archive')
       </div>
     </div>

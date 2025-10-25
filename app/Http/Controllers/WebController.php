@@ -12,7 +12,40 @@ class WebController extends Controller
 {
     public function home()
     {
-        return view('pages.web.home');
+        $archive = Archive::query()
+            ->orderByDesc('volume')
+            ->orderByDesc('issue')
+            ->orderByDesc('month_year')
+            ->firstOrFail();
+
+        $journals = Journal::query()
+            ->where('archive_id', $archive->id)
+            ->orderByDesc('publication_date')
+            ->limit(3)
+            ->get();
+
+        return view('pages.web.home', compact('archive', 'journals'));
+    }
+
+    public function aboutUs()
+    {
+        return view('pages.web.about-us');
+    }
+
+    public function editorialBoard()
+    {
+        $editors = User::query()->where('role', 'editor')
+            ->orderByRaw("
+            CASE 
+                WHEN position = 'Editorial in Chief' THEN 1
+                WHEN position = 'Associate Editor' THEN 2
+                WHEN position = 'Editorial Board' THEN 3
+                ELSE 4
+            END
+        ")
+            ->get();
+
+        return view('pages.web.editorial-board', compact('editors'));
     }
 
     public function contactUs()
@@ -30,35 +63,55 @@ class WebController extends Controller
         return view('pages.web.category.indexing');
     }
 
-    public function editorialBoard()
+    public function currentIssue()
     {
-        $editors = User::query()->where('role', 'editor')
-            ->orderByRaw("
-            CASE 
-                WHEN position = 'Editorial in Chief' THEN 1
-                WHEN position = 'Associate Editor' THEN 2
-                WHEN position = 'Editorial Board' THEN 3
-                ELSE 4
-            END
-        ")
+        $archive = Archive::query()
+            ->orderByDesc('volume')
+            ->orderByDesc('issue')
+            ->orderByDesc('month_year')
+            ->firstOrFail();
+
+        $journals = Journal::query()
+            ->where('archive_id', $archive->id)
+            ->orderByDesc('publication_date')
             ->get();
 
-        return view('pages.web.category.editorial-board', compact('editors'));
+        return view('pages.web.category.current-issue', compact('archive', 'journals'));
+    }
+
+    public function pastIssue()
+    {
+        $archives = Archive::query()
+            ->orderByDesc('volume')
+            ->orderByDesc('issue')
+            ->orderByDesc('month_year')
+            ->get();
+
+        return view('pages.web.category.past-issue', compact('archives'));
+    }
+
+    public function submissionGuideline()
+    {
+        return view('pages.web.author-menu.submission-guideline');
+    }
+
+    public function researchEthics()
+    {
+        return view('pages.web.author-menu.research-ethics');
     }
 
     public function index($volume, $issue, $month_year)
     {
-        $journals = Journal::whereHas('archive', function ($query) use ($volume, $issue, $month_year) {
-            $query->where('volume', $volume)
-                ->where('issue', $issue)
-                ->where('month_year', $month_year);
-        })
-            ->latest()
-            ->get();
+        $archive = Archive::query()
+            ->where('volume', $volume)
+            ->where('issue', $issue)
+            ->where('month_year', $month_year)
+            ->firstOrFail();
 
-        if ($journals->isEmpty()) {
-            abort(404);
-        }
+        $journals = Journal::query()
+            ->where('archive_id', $archive->id)
+            ->orderByDesc('publication_date')
+            ->get();
 
         return view('pages.web.archive.index', compact('volume', 'issue', 'month_year', 'journals'));
     }

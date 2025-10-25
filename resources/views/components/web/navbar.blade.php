@@ -1,6 +1,8 @@
 @php
   $items = [
     ['name' => 'Home', 'route' => 'home'],
+    ['name' => 'About Us', 'route' => 'about-us'],
+    ['name' => 'Editorial Board', 'route' => 'editorial-board'],
     ['name' => 'Contact Us', 'route' => 'contact-us'],
   ]
 @endphp

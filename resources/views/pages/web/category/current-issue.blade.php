@@ -1,20 +1,18 @@
 @extends('layouts.web')
 
 @section('content')
-  @if (!$journals->isEmpty())
-    <div class="space-y-2 border-x border-gray-200">
-      <h1 class="font-semibold p-2 bg-[#0048AE] text-white uppercase">
-        Recent Published Article
-      </h1>
+  <div class="space-y-4">
+    <h1 class="font-bold text-lg">
+      Current Issue | Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
+      {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}
+    </h1>
+    @if (!$journals->isEmpty())
       @foreach ($journals as $journal)
-        <div class="space-y-2 border-b border-gray-300 pb-2 px-2">
+        <div class="space-y-2 border-b border-gray-300 pb-2">
           <div class="space-y-0.5">
             <h1 class="font-bold text-[#0048AE] uppercase">{{ $journal->title }}</h1>
             <h2 class="font-medium">{{ $journal->author }}</h2>
             <h3 class="font-semibold">{{ $journal->country }}</h3>
-            <h4 class="font-medium">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
-              {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}
-            </h4>
           </div>
           <p class="text-gray-800/80 line-clamp-3">{{ $journal->abstract }}</p>
           <div class="flex items-center gap-2">
@@ -39,15 +37,8 @@
           </div>
         </div>
       @endforeach
-      <div class="flex justify-end border-b border-gray-200 px-2 pb-2">
-        <a href="{{ route('current-issue') }}">
-          <button type="button"
-            class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-sm bg-black border border-black px-4 py-2 text-xs font-medium tracking-wide text-neutral-100 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed">
-            View More
-            <i data-lucide="move-right" class="size-4" stroke-width="1.5"></i>
-          </button>
-        </a>
-      </div>
-    </div>
-  @endif
+    @else
+      <h1 class="font-semibold text-center">We haven’t published any articles yet. Check back later!</h1>
+    @endif
+  </div>
 @endsection
