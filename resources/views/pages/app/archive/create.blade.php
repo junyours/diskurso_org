@@ -2,7 +2,7 @@
 
 @section('content')
   <form method="POST" action="{{ route('admin.archive.add') }}" x-data="{ processing: false }" @submit="processing = true"
-    class="max-w-sm mx-auto space-y-4">
+    class="max-w-md mx-auto space-y-4">
     @csrf
     <h1 class="font-semibold text-xl">Create Archive</h1>
     <div class="flex w-full flex-col gap-1 text-neutral-600">

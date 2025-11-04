@@ -1,22 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-  <form method="POST" action="{{ route('admin.editorial-board.add') }}" enctype="multipart/form-data"
+  <form method="POST" action="{{ route('admin.editorial-board.update', $editor->id) }}" enctype="multipart/form-data"
     x-data="{ processing: false }" @submit="processing = true" class="max-w-md mx-auto space-y-4">
     @csrf
-    <h1 class="font-semibold text-xl">Create Editorial Board</h1>
+    <h1 class="font-semibold text-xl">Edit Editorial Board</h1>
     <div class="relative flex w-full flex-col gap-1">
       <label class="w-fit pl-0.5 text-sm text-neutral-600" for="profile_picture">Profile Picture</label>
       <input id="profile_picture" type="file" name="profile_picture"
-        class="w-full overflow-clip rounded-sm border border-neutral-300 bg-neutral-50/50 text-sm text-neutral-600 file:mr-4 file:border-none file:bg-neutral-50 file:px-4 file:py-2 file:font-medium file:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
-        required />
+        class="w-full overflow-clip rounded-sm border border-neutral-300 bg-neutral-50/50 text-sm text-neutral-600 file:mr-4 file:border-none file:bg-neutral-50 file:px-4 file:py-2 file:font-medium file:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75" />
       @error('profile_picture')
         <small class="pl-0.5 text-red-500">{{ $message }}</small>
       @enderror
     </div>
     <div class="flex w-full flex-col gap-1 text-neutral-600">
       <label for="name" class="w-fit pl-0.5 text-sm">Name</label>
-      <input id="name" type="text" value="{{ old('name') }}"
+      <input id="name" type="text" value="{{ $editor->name }}"
         class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
         name="name" autocomplete="name" required />
       @error('name')
@@ -25,7 +24,7 @@
     </div>
     <div class="flex w-full flex-col gap-1 text-neutral-600">
       <label for="email" class="w-fit pl-0.5 text-sm">Email Address</label>
-      <input id="email" type="email" value="{{ old('email') }}"
+      <input id="email" type="email" value="{{ $editor->email }}"
         class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
         name="email" autocomplete="email" required />
       @error('email')
@@ -33,43 +32,40 @@
       @enderror
     </div>
     <div x-data="{
-                                          options: [
-                                              {
-                                                  value: 'Editorial in Chief',
-                                                  label: 'Editorial in Chief',
-                                              },
-                                              {
-                                                  value: 'Associate Editor',
-                                                  label: 'Associate Editor',
-                                              },
-                                              {
-                                                  value: 'Editorial Board',
-                                                  label: 'Editorial Board',
-                                              },
-                                          ],
-                                          isOpen: false,
-                                          openedWithKeyboard: false,
-                                          selectedOption: null,
-                                          setSelectedOption(option) {
-                                              this.selectedOption = option
-                                              this.isOpen = false
-                                              this.openedWithKeyboard = false
-                                              this.$refs.hiddenTextField.value = option.value
-                                          },
-                                          highlightFirstMatchingOption(pressedKey) {
-                                              const option = this.options.find((item) =>
-                                                  item.label.toLowerCase().startsWith(pressedKey.toLowerCase()),
-                                              )
-                                              if (option) {
-                                                  const index = this.options.indexOf(option)
-                                                  const allOptions = document.querySelectorAll('.combobox-option')
-                                                  if (allOptions[index]) {
-                                                      allOptions[index].focus()
-                                                  }
-                                              }
-                                          },
-                                      }" class="w-full flex flex-col gap-1"
-      x-on:keydown="highlightFirstMatchingOption($event.key)"
+      options: [
+        { value: 'Editorial in Chief', label: 'Editorial in Chief' },
+        { value: 'Associate Editor', label: 'Associate Editor' },
+        { value: 'Editorial Board', label: 'Editorial Board' },
+      ],
+      isOpen: false,
+      openedWithKeyboard: false,
+      selectedOption: null,
+      init() {
+        const existing = this.options.find(o => o.value === '{{ $editor->position }}')
+        if (existing) {
+          this.selectedOption = existing
+          this.$refs.hiddenTextField.value = existing.value
+        }
+      },
+      setSelectedOption(option) {
+        this.selectedOption = option
+        this.isOpen = false
+        this.openedWithKeyboard = false
+        this.$refs.hiddenTextField.value = option.value
+      },
+      highlightFirstMatchingOption(pressedKey) {
+        const option = this.options.find(item =>
+          item.label.toLowerCase().startsWith(pressedKey.toLowerCase())
+        )
+        if (option) {
+          const index = this.options.indexOf(option)
+          const allOptions = document.querySelectorAll('.combobox-option')
+          if (allOptions[index]) {
+            allOptions[index].focus()
+          }
+        }
+      },
+    }" class="w-full flex flex-col gap-1" x-on:keydown="highlightFirstMatchingOption($event.key)"
       x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false">
       <label for="position" class="w-fit pl-0.5 text-sm text-neutral-600">Position</label>
       <div class="relative">
@@ -112,7 +108,7 @@
       <label for="department" class="w-fit pl-0.5 text-sm">Department</label>
       <textarea id="department" name="department"
         class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2.5 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
-        rows="3" required>{{ old('department') }}</textarea>
+        rows="3" required>{{ $editor->department }}</textarea>
       @error('department')
         <small class="pl-0.5 text-red-500">{{ $message }}</small>
       @enderror
@@ -121,7 +117,7 @@
       <button type="submit"
         class="whitespace-nowrap rounded-sm bg-black border border-black px-4 py-2 text-sm font-medium tracking-wide text-neutral-100 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed"
         :disabled="processing">
-        Save
+        Update
       </button>
     </div>
   </form>
