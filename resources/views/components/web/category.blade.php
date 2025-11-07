@@ -1,6 +1,7 @@
 @php
   $items = [
     ['name' => 'About the Journal', 'route' => 'about-journal'],
+    ['name' => 'About the Publisher', 'route' => 'about-publisher'],
     ['name' => 'Indexing', 'route' => 'indexing'],
     ['name' => 'Current Issue', 'route' => 'current-issue'],
     ['name' => 'Past Issue', 'route' => 'past-issue'],

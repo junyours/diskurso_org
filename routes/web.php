@@ -31,6 +31,7 @@ Route::get('/editorial-board', [WebController::class, 'editorialBoard'])->name('
 Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
 
 Route::get('/about-journal', [WebController::class, 'aboutJournal'])->name('about-journal');
+Route::get('/about-publisher', [WebController::class, 'aboutPublisher'])->name('about-publisher');
 Route::get('/indexing', [WebController::class, 'indexing'])->name('indexing');
 Route::get('/current-issue', [WebController::class, 'currentIssue'])->name('current-issue');
 Route::get('/past-issue', [WebController::class, 'pastIssue'])->name('past-issue');

@@ -58,6 +58,11 @@ class WebController extends Controller
         return view('pages.web.category.about-journal');
     }
 
+    public function aboutPublisher()
+    {
+        return view('pages.web.category.about-publisher');
+    }
+
     public function indexing()
     {
         return view('pages.web.category.indexing');
