@@ -1,3 +1,8 @@
+@php
+  $hashids = new Hashids\Hashids(config('app.key'), 36);
+  $hashedId = $hashids->encode($journal->id);
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -25,7 +30,7 @@
   'issue' => $journal->archive->issue,
   'from_month' => $journal->archive->from_month,
   'to_month' => $journal->archive->to_month,
-  'pdf_path' => $journal->pdf_path,
+  'hashedId' => $hashedId,
 ]) }}">
   <title>{{ config('app.name') }}</title>
 
@@ -63,7 +68,7 @@
             </h2>
             <div>
               <h2 class="font-semibold">Abstract:</h2>
-              <p>{{ $journal->abstract }}</p>
+              <p class="whitespace-break-spaces">{{ $journal->abstract }}</p>
             </div>
             <div>
               <h2 class="font-semibold">Keywords:</h2>
@@ -75,7 +80,7 @@
   'issue' => $journal->archive->issue,
   'from_month' => $journal->archive->from_month,
   'to_month' => $journal->archive->to_month,
-  'pdf_path' => $journal->pdf_path,
+  'hashedId' => $hashedId,
 ]) }}" target="_blank">
             <button type="button"
               class="whitespace-nowrap rounded-sm bg-red-600 border border-red-600 px-4 py-2 text-xs font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed">PDF

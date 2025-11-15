@@ -45,4 +45,17 @@ abstract class Controller
 
         return $create->json()['id'];
     }
+
+    public function renameDriveFolder($accessToken, $folderId, $newName)
+    {
+        $response = Http::withToken($accessToken)
+            ->patch("https://www.googleapis.com/drive/v3/files/{$folderId}", [
+                'name' => $newName,
+            ]);
+
+        if (!$response->successful()) {
+            throw new \Exception('Failed to rename Google Drive folder: ' . $response->body());
+        }
+    }
+
 }

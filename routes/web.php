@@ -19,10 +19,14 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/archive', [ArchiveController::class, 'index'])->name('admin.archive');
   Route::get('/admin/archive/create', [ArchiveController::class, 'create'])->name('admin.archive.create');
   Route::post('/admin/archive/add', [ArchiveController::class, 'add'])->name('admin.archive.add');
+  Route::get('/admin/archive/edit/{id}', [ArchiveController::class, 'edit'])->name('admin.archive.edit');
+  Route::post('/admin/archive/update/{id}', [ArchiveController::class, 'update'])->name('admin.archive.update');
 
   Route::get('/admin/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}', [JournalController::class, 'index'])->name('admin.journal');
   Route::get('/admin/journal/create/{folder_id}', [JournalController::class, 'create'])->name('admin.journal.create');
   Route::post('/admin/journal/add/{id}', [JournalController::class, 'add'])->name('admin.journal.add');
+  Route::get('/admin/journal/edit/{id}', [JournalController::class, 'edit'])->name('admin.journal.edit');
+  Route::post('/admin/journal/update/{id}', [JournalController::class, 'update'])->name('admin.journal.update');
 });
 
 Route::get('/', [WebController::class, 'home'])->name('home');
@@ -40,7 +44,7 @@ Route::get('/submission-guidelines', [WebController::class, 'submissionGuideline
 Route::get('/research-ethics', [WebController::class, 'researchEthics'])->name('research-ethics');
 
 Route::get('/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}', [WebController::class, 'index'])->name('archive');
-Route::get('/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');
+Route::get('/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}/{hashedId}', [WebController::class, 'pdf'])->name('archive.pdf');
 Route::get('/abstract/{title}', [WebController::class, 'abstract'])->name('abstract');
 
 require __DIR__ . '/auth.php';

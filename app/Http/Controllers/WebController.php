@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Archive;
 use App\Models\Journal;
 use App\Models\User;
+use Hashids\Hashids;
 use Http;
 use Illuminate\Http\Request;
 
@@ -125,18 +126,27 @@ class WebController extends Controller
         return view('pages.web.archive.index', compact('volume', 'issue', 'from_month', 'to_month', 'journals'));
     }
 
-    public function pdf($volume, $issue, $from_month, $to_month, $pdf_path)
+    public function pdf($volume, $issue, $from_month, $to_month, $hashedId)
     {
-        Archive::whereHas('journal', function ($query) use ($pdf_path) {
-            $query->where('pdf_path', $pdf_path);
-        })
+        $hashids = new Hashids(config('app.key'), 36);
+        $ids = $hashids->decode($hashedId);
+
+        if (empty($ids)) {
+            abort(404);
+        }
+
+        $id = $ids[0];
+
+        $journal = Journal::findOrFail($id);
+
+        Archive::where('id', $journal->archive_id)
             ->where('volume', $volume)
             ->where('issue', $issue)
             ->where('from_month', $from_month)
             ->where('to_month', $to_month)
             ->firstOrFail();
 
-        $pdfUrl = "https://drive.google.com/uc?export=view&id={$pdf_path}";
+        $pdfUrl = "https://drive.google.com/uc?export=view&id={$journal->pdf_path}";
 
         return response()->make(file_get_contents($pdfUrl), 200, [
             'Content-Type' => 'application/pdf',

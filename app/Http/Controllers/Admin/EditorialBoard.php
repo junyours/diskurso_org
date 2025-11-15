@@ -79,7 +79,7 @@ class EditorialBoard extends Controller
                 'role' => 'editor'
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Editor added successfully!');
         }
     }
 
@@ -151,6 +151,6 @@ class EditorialBoard extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Editor updated successfully!');
     }
 }

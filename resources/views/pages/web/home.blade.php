@@ -7,6 +7,10 @@
         Recent Published Article
       </h1>
       @foreach ($journals as $journal)
+        @php
+          $hashids = new Hashids\Hashids(config('app.key'), 36);
+          $hashedId = $hashids->encode($journal->id);
+        @endphp
         <div class="space-y-2 border-b border-gray-300 pb-2 px-2">
           <div class="space-y-0.5">
             <h1 class="font-bold text-[#0048AE] uppercase">{{ $journal->title }}</h1>
@@ -31,7 +35,7 @@
             'issue' => $archive->issue,
             'from_month' => $archive->from_month,
             'to_month' => $archive->to_month,
-            'pdf_path' => $journal->pdf_path,
+            'hashedId' => $hashedId,
           ]) }}" target="_blank">
               <button type="button"
                 class="whitespace-nowrap rounded-sm bg-red-600 border border-red-600 px-4 py-2 text-xs font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed">PDF

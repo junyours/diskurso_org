@@ -27,7 +27,8 @@
                     <td class="p-4">{{ $archive->volume }}</td>
                     <td class="p-4">{{ $archive->issue }}</td>
                     <td class="p-4">{{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
-                      {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}</td>
+                      {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}
+                    </td>
                     <td class="p-4 space-x-2">
                       <a href="{{ route('admin.journal', [
               'volume' => $archive->volume,
@@ -36,7 +37,7 @@
               'to_month' => $archive->to_month,
             ]) }}"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-green-500 outline-green-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">Open</a>
-                      <a href=""
+                      <a href="{{ route('admin.archive.edit', $archive->id) }}"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-blue-500 outline-blue-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">Edit</a>
                     </td>
                   </tr>

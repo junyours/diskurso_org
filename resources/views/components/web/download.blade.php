@@ -1,6 +1,6 @@
 @php
   $items = [
-    ['name' => 'DisKURSO_IMJR-Journal-Template', 'path' => 'downloads/DisKURSO_IMJR-Journal-Template.docx'],
+    ['name' => 'DisKURSO_IMJR-Journal-Template', 'path' => 'files/downloads/DisKURSO_IMJR-Journal-Template.docx'],
   ]
 @endphp
 

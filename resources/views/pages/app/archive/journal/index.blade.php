@@ -25,6 +25,10 @@
         </thead>
         <tbody class="divide-y divide-neutral-300">
           @foreach ($journals as $journal)
+                  @php
+                    $hashids = new Hashids\Hashids(config('app.key'), 36);
+                    $hashedId = $hashids->encode($journal->id);
+                  @endphp
                   <tr>
                     <td class="p-4">{{ $journal->title }}</td>
                     <td class="p-4 space-x-2">
@@ -33,10 +37,10 @@
               'issue' => $archive->issue,
               'from_month' => $archive->from_month,
               'to_month' => $archive->to_month,
-              'pdf_path' => $journal->pdf_path,
+              'hashedId' => $hashedId,
             ]) }}" target="_blank"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-green-500 outline-green-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">View</a>
-                      <a href=""
+                      <a href="{{ route('admin.journal.edit', $journal->id) }}"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-blue-500 outline-blue-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">Edit</a>
                     </td>
                   </tr>

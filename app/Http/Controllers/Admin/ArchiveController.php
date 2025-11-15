@@ -48,6 +48,45 @@ class ArchiveController extends Controller
             'folder_id' => $subFolder,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Archive added successfully!');
     }
+
+    public function edit($id)
+    {
+        $archive = Archive::findOrFail($id);
+
+        return view('pages.app.archive.edit', compact('archive'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $accessToken = $this->token();
+
+        $request->validate([
+            'volume' => ['required'],
+            'issue' => ['required'],
+            'from_month' => ['required'],
+            'to_month' => ['required'],
+        ]);
+
+        $archive = Archive::findOrFail($id);
+
+        $newFolderName =
+            'Volume ' . $request->volume . ', ' .
+            'Issue ' . $request->issue . ', ' .
+            Carbon::parse($request->from_month)->format('F Y') . ' - ' .
+            Carbon::parse($request->to_month)->format('F Y');
+
+        $this->renameDriveFolder($accessToken, $archive->folder_id, $newFolderName);
+
+        $archive->update([
+            'volume' => $request->volume,
+            'issue' => $request->issue,
+            'from_month' => $request->from_month,
+            'to_month' => $request->to_month,
+        ]);
+
+        return redirect()->back()->with('success', 'Archive updated successfully!');
+    }
+
 }

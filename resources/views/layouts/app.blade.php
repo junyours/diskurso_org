@@ -13,6 +13,7 @@
 </head>
 
 <body class="antialiased">
+  <x-ui.notification />
   <div x-data="{ sidebarIsOpen: false }" class="relative flex w-full flex-col md:flex-row">
     <div x-cloak x-show="sidebarIsOpen" class="fixed inset-0 z-20 bg-neutral-950/10 backdrop-blur-xs md:hidden"
       aria-hidden="true" x-on:click="sidebarIsOpen = false" x-transition.opacity></div>
