@@ -13,7 +13,8 @@
             <h2 class="font-medium">{{ $journal->author }}</h2>
             <h3 class="font-semibold">{{ $journal->country }}</h3>
             <h4 class="font-medium">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
-              {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}
+              {{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
+              {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}
             </h4>
           </div>
           <p class="text-gray-800/80 line-clamp-3">{{ $journal->abstract }}</p>
@@ -28,7 +29,8 @@
             <a href="{{ route('archive.pdf', [
             'volume' => $archive->volume,
             'issue' => $archive->issue,
-            'month_year' => $archive->month_year,
+            'from_month' => $archive->from_month,
+            'to_month' => $archive->to_month,
             'pdf_path' => $journal->pdf_path,
           ]) }}" target="_blank">
               <button type="button"

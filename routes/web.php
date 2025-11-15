@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/archive/create', [ArchiveController::class, 'create'])->name('admin.archive.create');
   Route::post('/admin/archive/add', [ArchiveController::class, 'add'])->name('admin.archive.add');
 
-  Route::get('/admin/archive/volume-{volume}/issue-{issue}/{month_year}', [JournalController::class, 'index'])->name('admin.journal');
+  Route::get('/admin/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}', [JournalController::class, 'index'])->name('admin.journal');
   Route::get('/admin/journal/create/{folder_id}', [JournalController::class, 'create'])->name('admin.journal.create');
   Route::post('/admin/journal/add/{id}', [JournalController::class, 'add'])->name('admin.journal.add');
 });
@@ -39,8 +39,8 @@ Route::get('/past-issue', [WebController::class, 'pastIssue'])->name('past-issue
 Route::get('/submission-guidelines', [WebController::class, 'submissionGuideline'])->name('submission-guideline');
 Route::get('/research-ethics', [WebController::class, 'researchEthics'])->name('research-ethics');
 
-Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}', [WebController::class, 'index'])->name('archive');
-Route::get('/archive/volume-{volume}/issue-{issue}/{month_year}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');
+Route::get('/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}', [WebController::class, 'index'])->name('archive');
+Route::get('/archive/volume-{volume}/issue-{issue}/{from_month}/{to_month}/{pdf_path}', [WebController::class, 'pdf'])->name('archive.pdf');
 Route::get('/abstract/{title}', [WebController::class, 'abstract'])->name('abstract');
 
 require __DIR__ . '/auth.php';

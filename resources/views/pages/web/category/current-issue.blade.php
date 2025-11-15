@@ -4,7 +4,8 @@
   <div class="space-y-4">
     <h1 class="font-bold text-lg">
       Current Issue | Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
-      {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}
+      {{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
+      {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}
     </h1>
     @if (!$journals->isEmpty())
       @foreach ($journals as $journal)
@@ -26,7 +27,8 @@
             <a href="{{ route('archive.pdf', [
             'volume' => $archive->volume,
             'issue' => $archive->issue,
-            'month_year' => $archive->month_year,
+            'from_month' => $archive->from_month,
+            'to_month' => $archive->to_month,
             'pdf_path' => $journal->pdf_path,
           ]) }}" target="_blank">
               <button type="button"

@@ -23,7 +23,8 @@
   <meta name="citation_pdf_url" content="{{ route('archive.pdf', [
   'volume' => $journal->archive->volume,
   'issue' => $journal->archive->issue,
-  'month_year' => $journal->archive->month_year,
+  'from_month' => $journal->archive->from_month,
+  'to_month' => $journal->archive->to_month,
   'pdf_path' => $journal->pdf_path,
 ]) }}">
   <title>{{ config('app.name') }}</title>
@@ -51,11 +52,12 @@
             <h2 class="font-semibold">Volume & Issue: <span class="font-normal">Volume {{ $journal->archive->volume }},
                 Issue
                 {{ $journal->archive->issue }},
-                {{ Carbon\Carbon::parse($journal->archive->month_year)->format('F Y') }}</span>
+                {{ Carbon\Carbon::parse($journal->archive->from_month)->format('F Y') }} -
+                {{ Carbon\Carbon::parse($journal->archive->to_month)->format('F Y') }}</span>
             </h2>
             <h2 class="font-semibold">Page No.: <span class="font-normal">{{ $journal->page_number }}</span></h2>
-            <h2 class="font-semibold">DOI.: <a href="https://doi.org/10.63941/{{ $journal->doi }}" target="_blank"
-                class="font-normal hover:underline">https://doi.org/10.63941/{{ $journal->doi }}</a></h2>
+            <h2 class="font-semibold">DOI.: <a href="https://doi.org/{{ $journal->doi }}" target="_blank"
+                class="font-normal hover:underline">https://doi.org/{{ $journal->doi }}</a></h2>
             <h2 class="font-semibold">Publication Date: <span
                 class="font-normal">{{ \Carbon\Carbon::parse($journal->publication_date)->format('F j, Y') }}</span>
             </h2>
@@ -71,7 +73,8 @@
           <a href="{{ route('archive.pdf', [
   'volume' => $journal->archive->volume,
   'issue' => $journal->archive->issue,
-  'month_year' => $journal->archive->month_year,
+  'from_month' => $journal->archive->from_month,
+  'to_month' => $journal->archive->to_month,
   'pdf_path' => $journal->pdf_path,
 ]) }}" target="_blank">
             <button type="button"

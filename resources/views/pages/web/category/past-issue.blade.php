@@ -8,10 +8,12 @@
           <a href="{{ route('archive', [
           'volume' => $archive->volume,
           'issue' => $archive->issue,
-          'month_year' => $archive->month_year
+          'from_month' => $archive->from_month,
+          'to_month' => $archive->to_month,
         ]) }}" class="flex items-center gap-2 border border-gray-200 p-2 hover:text-[#0048AE]">
             <span class="font-medium">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
-              {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}</span>
+              {{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
+              {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}</span>
           </a>
       @endforeach
     </div>

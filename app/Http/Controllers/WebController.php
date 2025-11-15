@@ -15,7 +15,8 @@ class WebController extends Controller
         $archive = Archive::query()
             ->orderByDesc('volume')
             ->orderByDesc('issue')
-            ->orderByDesc('month_year')
+            ->orderByDesc('from_month')
+            ->orderByDesc('to_month')
             ->firstOrFail();
 
         $journals = Journal::query()
@@ -73,7 +74,8 @@ class WebController extends Controller
         $archive = Archive::query()
             ->orderByDesc('volume')
             ->orderByDesc('issue')
-            ->orderByDesc('month_year')
+            ->orderByDesc('from_month')
+            ->orderByDesc('to_month')
             ->firstOrFail();
 
         $journals = Journal::query()
@@ -89,7 +91,8 @@ class WebController extends Controller
         $archives = Archive::query()
             ->orderByDesc('volume')
             ->orderByDesc('issue')
-            ->orderByDesc('month_year')
+            ->orderByDesc('from_month')
+            ->orderByDesc('to_month')
             ->get();
 
         return view('pages.web.category.past-issue', compact('archives'));
@@ -105,12 +108,13 @@ class WebController extends Controller
         return view('pages.web.author-menu.research-ethics');
     }
 
-    public function index($volume, $issue, $month_year)
+    public function index($volume, $issue, $from_month, $to_month)
     {
         $archive = Archive::query()
             ->where('volume', $volume)
             ->where('issue', $issue)
-            ->where('month_year', $month_year)
+            ->where('from_month', $from_month)
+            ->where('to_month', $to_month)
             ->firstOrFail();
 
         $journals = Journal::query()
@@ -118,17 +122,18 @@ class WebController extends Controller
             ->orderByDesc('publication_date')
             ->get();
 
-        return view('pages.web.archive.index', compact('volume', 'issue', 'month_year', 'journals'));
+        return view('pages.web.archive.index', compact('volume', 'issue', 'from_month', 'to_month', 'journals'));
     }
 
-    public function pdf($volume, $issue, $month_year, $pdf_path)
+    public function pdf($volume, $issue, $from_month, $to_month, $pdf_path)
     {
         Archive::whereHas('journal', function ($query) use ($pdf_path) {
             $query->where('pdf_path', $pdf_path);
         })
             ->where('volume', $volume)
             ->where('issue', $issue)
-            ->where('month_year', $month_year)
+            ->where('from_month', $from_month)
+            ->where('to_month', $to_month)
             ->firstOrFail();
 
         $pdfUrl = "https://drive.google.com/uc?export=view&id={$pdf_path}";

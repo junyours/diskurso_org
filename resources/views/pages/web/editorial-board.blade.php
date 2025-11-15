@@ -17,7 +17,7 @@
               <div class="p-2 flex flex-col gap-2">
                 <h2 class="font-medium break-words">{{ $editor->name }}</h2>
                 <a href="mailto:{{ $editor->email }}"
-                  class="text-xs break-words text-[#0048AE] hover:underline">{{ $editor->email }}</a>
+                  class="text-xs break-words text-[#0048AE] hover:underline w-fit">{{ $editor->email }}</a>
                 <p class="text-gray-600 break-words">{{ $editor->department }}</p>
               </div>
             </div>

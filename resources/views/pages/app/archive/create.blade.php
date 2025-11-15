@@ -4,7 +4,7 @@
   <form method="POST" action="{{ route('admin.archive.add') }}" x-data="{ processing: false }" @submit="processing = true"
     class="max-w-md mx-auto space-y-4">
     @csrf
-    <h1 class="font-semibold text-xl">Create Archive</h1>
+    <h1 class="font-semibold text-xl">Create Quarterly Archive</h1>
     <div class="flex w-full flex-col gap-1 text-neutral-600">
       <label for="volume" class="w-fit pl-0.5 text-sm">Volume</label>
       <input id="volume" type="text" value="{{ old('volume') }}"
@@ -23,14 +23,25 @@
         <small class="pl-0.5 text-red-500">{{ $message }}</small>
       @enderror
     </div>
-    <div class="flex w-full flex-col gap-1 text-neutral-600">
-      <label for="month_year" class="w-fit pl-0.5 text-sm">Month/Year</label>
-      <input id="month_year" type="month" value="{{ old('month_year') }}"
-        class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
-        name="month_year" required />
-      @error('month_year')
-        <small class="pl-0.5 text-red-500">{{ $message }}</small>
-      @enderror
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex w-full flex-col gap-1 text-neutral-600">
+        <label for="from_month" class="w-fit pl-0.5 text-sm">From Month</label>
+        <input id="from_month" type="month" value="{{ old('from_month') }}"
+          class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
+          name="from_month" required />
+        @error('from_month')
+          <small class="pl-0.5 text-red-500">{{ $message }}</small>
+        @enderror
+      </div>
+      <div class="flex w-full flex-col gap-1 text-neutral-600">
+        <label for="to_month" class="w-fit pl-0.5 text-sm">To Month</label>
+        <input id="to_month" type="month" value="{{ old('to_month') }}"
+          class="w-full rounded-sm border border-neutral-300 bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75"
+          name="to_month" required />
+        @error('to_month')
+          <small class="pl-0.5 text-red-500">{{ $message }}</small>
+        @enderror
+      </div>
     </div>
     <div class="flex justify-end">
       <button type="submit"

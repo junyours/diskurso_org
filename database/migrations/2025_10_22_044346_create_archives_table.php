@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('volume');
             $table->string('issue');
-            $table->string('month_year');
+            $table->string('from_month');
+            $table->string('to_month');
             $table->string('folder_id');
             $table->timestamps();
         });

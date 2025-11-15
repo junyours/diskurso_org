@@ -11,11 +11,12 @@ use Illuminate\Http\Request;
 
 class JournalController extends Controller
 {
-    public function index($volume, $issue, $month_year)
+    public function index($volume, $issue, $from_month, $to_month)
     {
         $archive = Archive::where('volume', $volume)
             ->where('issue', $issue)
-            ->where('month_year', $month_year)
+            ->where('from_month', $from_month)
+            ->where('to_month', $to_month)
             ->firstOrFail();
 
         $journals = Journal::where('archive_id', $archive->id)
@@ -39,7 +40,7 @@ class JournalController extends Controller
         $accessToken = $this->token();
 
         $request->validate([
-            'pdf_path' => ['required', 'mimes:pdf', 'max:2048'],
+            'pdf_path' => ['required', 'mimes:pdf'],
             'title' => ['required'],
             'author' => ['required'],
             'country' => ['required'],

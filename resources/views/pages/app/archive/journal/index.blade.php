@@ -4,7 +4,8 @@
   <div class="space-y-4">
     <div class="flex items-center justify-between">
       <h1 class="capitalize font-semibold">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
-        {{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}
+        {{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
+        {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}
       </h1>
       <a href="{{ route('admin.journal.create', $archive->folder_id) }}">
         <button type="button"
@@ -30,7 +31,8 @@
                       <a href="{{ route('archive.pdf', [
               'volume' => $archive->volume,
               'issue' => $archive->issue,
-              'month_year' => $archive->month_year,
+              'from_month' => $archive->from_month,
+              'to_month' => $archive->to_month,
               'pdf_path' => $journal->pdf_path,
             ]) }}" target="_blank"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-green-500 outline-green-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">View</a>

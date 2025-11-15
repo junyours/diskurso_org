@@ -2,7 +2,7 @@
   $items = [
     ['name' => 'Dashboard', 'icon' => 'layout-grid', 'route' => 'dashboard'],
     ['name' => 'Editorial Board', 'icon' => 'users', 'route' => 'admin.editorial-board'],
-    ['name' => 'Archive', 'icon' => 'archive', 'route' => 'admin.archive'],
+    ['name' => 'Quarterly Archive', 'icon' => 'archive', 'route' => 'admin.archive'],
   ]
 @endphp
 

@@ -11,7 +11,8 @@ class Archive extends Model
     protected $fillable = [
         'volume',
         'issue',
-        'month_year',
+        'from_month',
+        'to_month',
         'folder_id',
     ];
 

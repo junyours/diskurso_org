@@ -22,7 +22,7 @@
               <a href="mailto:ditads@infosheet.dev" target="_blank" class="hover:underline">ditads@infosheet.dev</a>
             </li>
             <li class="mb-4">
-              <a href="tel:09171281320" target="_blank" class="hover:underline">09171281320</a>
+              <a href="tel:+639171281320" target="_blank" class="hover:underline">+63 917 128 1320</a>
             </li>
           </ul>
         </div>

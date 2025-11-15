@@ -17,7 +17,7 @@
           <tr>
             <th scope="col" class="p-4">Volume</th>
             <th scope="col" class="p-4">Issue</th>
-            <th scope="col" class="p-4">Month/Year</th>
+            <th scope="col" class="p-4">Quarterly</th>
             <th scope="col" class="p-4">Action</th>
           </tr>
         </thead>
@@ -26,12 +26,14 @@
                   <tr>
                     <td class="p-4">{{ $archive->volume }}</td>
                     <td class="p-4">{{ $archive->issue }}</td>
-                    <td class="p-4">{{ Carbon\Carbon::parse($archive->month_year)->format('F Y') }}</td>
+                    <td class="p-4">{{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} -
+                      {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}</td>
                     <td class="p-4 space-x-2">
                       <a href="{{ route('admin.journal', [
               'volume' => $archive->volume,
               'issue' => $archive->issue,
-              'month_year' => $archive->month_year,
+              'from_month' => $archive->from_month,
+              'to_month' => $archive->to_month,
             ]) }}"
                         class="whitespace-nowrap rounded-sm bg-transparent p-0.5 font-semibold text-green-500 outline-green-500 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0">Open</a>
                       <a href=""

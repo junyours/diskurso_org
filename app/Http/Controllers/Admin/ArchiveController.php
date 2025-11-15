@@ -14,7 +14,8 @@ class ArchiveController extends Controller
         $archives = Archive::query()
             ->orderByDesc('volume')
             ->orderByDesc('issue')
-            ->orderByDesc('month_year')
+            ->orderByDesc('from_month')
+            ->orderByDesc('to_month')
             ->get();
 
         return view('pages.app.archive.index', compact('archives'));
@@ -32,16 +33,18 @@ class ArchiveController extends Controller
         $request->validate([
             'volume' => ['required'],
             'issue' => ['required'],
-            'month_year' => ['required'],
+            'from_month' => ['required'],
+            'to_month' => ['required'],
         ]);
 
         $mainFolder = $this->getOrCreateFolder($accessToken, 'Archives', config('services.google.folder_id'));
-        $subFolder = $this->getOrCreateFolder($accessToken, 'Volume' . ' ' . $request->volume . ',' . ' ' . 'Issue' . ' ' . $request->issue . ',' . ' ' . Carbon::parse($request->month_year)->format('F Y'), $mainFolder);
+        $subFolder = $this->getOrCreateFolder($accessToken, 'Volume' . ' ' . $request->volume . ',' . ' ' . 'Issue' . ' ' . $request->issue . ',' . ' ' . Carbon::parse($request->from_month)->format('F Y') . ' ' . '-' . ' ' . Carbon::parse($request->to_month)->format('F Y'), $mainFolder);
 
         Archive::create([
             'volume' => $request->volume,
             'issue' => $request->issue,
-            'month_year' => $request->month_year,
+            'from_month' => $request->from_month,
+            'to_month' => $request->to_month,
             'folder_id' => $subFolder,
         ]);
 
