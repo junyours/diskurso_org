@@ -18,7 +18,7 @@
       'to_month' => $archive->to_month
     ]) }}"
       class="flex items-center gap-2 border-x border-b border-gray-200 hover:bg-gray-200 p-2 hover:text-[#0048AE]  {{ request()->is("archive/volume-{$archive->volume}/issue-{$archive->issue}/{$archive->from_month}/{$archive->to_month}") ? 'text-[#0048AE]' : '' }}">
-      <i data-lucide="circle-plus" class="size-5" stroke-width="1.5"></i>
+      <i data-lucide="circle-plus" class="size-5 shrink-0" stroke-width="1.5"></i>
       <span class="font-medium">Volume {{ $archive->volume }}, Issue {{ $archive->issue }},
         {{ Carbon\Carbon::parse($archive->from_month)->format('F Y') }} - {{ Carbon\Carbon::parse($archive->to_month)->format('F Y') }}</span>
     </a>
