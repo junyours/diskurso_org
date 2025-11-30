@@ -5,14 +5,14 @@
     <h1 class="font-bold text-lg">Contact Us</h1>
     <div class="space-y-4">
       <h1 class="font-semibold text-center">Metro Square R118 Zone 2, Iponan, CDO City</h1>
-      <div class="flex items-center justify-around gap-4 text-[#790E08]">
+      <div class="flex items-center justify-around gap-4 text-[#790E08] max-md:flex-col">
         <div class="flex items-center gap-2">
           <i data-lucide="mail" class="size-5" stroke-width="1.5"></i>
           <a href="mailto:ditads@infosheet.dev" class="hover:underline">ditads@infosheet.dev</a>
         </div>
         <div class="flex items-center gap-2">
           <i data-lucide="phone" class="size-5" stroke-width="1.5"></i>
-          <a href="tel:09171281320" class="hover:underline">09171281320</a>
+          <a href="tel:+639171281320" class="hover:underline">+63 917 128 1320</a>
         </div>
       </div>
       <iframe
