@@ -156,7 +156,7 @@ class WebController extends Controller
     public function abstract($title)
     {
         $journal = Journal::with('archive')
-            ->where('title', str_replace('-', ' ', $title))
+            ->where('title', $title)
             ->firstOrFail();
 
         $authors = array_map('trim', explode(',', $journal->author));

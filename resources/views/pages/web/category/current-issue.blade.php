@@ -21,7 +21,7 @@
           </div>
           <p class="text-gray-800/80 line-clamp-3">{{ $journal->abstract }}</p>
           <div class="flex sm:items-center gap-2 max-sm:flex-col">
-            <a href="{{ route('abstract', strtolower(str_replace(' ', '-', $journal->title))) }}">
+            <a href="{{ route('abstract', $journal->title) }}">
               <button type="button"
                 class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-sm bg-neutral-50 border border-neutral-50 px-4 py-2 text-xs font-medium tracking-wide text-neutral-900 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed">
                 Abstract
