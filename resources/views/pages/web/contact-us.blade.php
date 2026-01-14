@@ -12,7 +12,7 @@
         </div>
         <div class="flex items-center gap-2">
           <i data-lucide="phone" class="size-5" stroke-width="1.5"></i>
-          <a href="tel:+639171281320" class="hover:underline">+63 917 128 1320</a>
+          <a href="tel:09171281320" class="hover:underline">+63 917 128 1320</a>
         </div>
       </div>
       <iframe

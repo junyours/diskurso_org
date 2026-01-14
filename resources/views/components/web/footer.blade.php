@@ -1,9 +1,12 @@
 <footer class="border-t border-gray-200">
   <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
     <div class="md:flex md:justify-between">
-      <div class="mb-6 md:mb-0">
+      <div class="mb-6 md:mb-0 flex flex-col gap-4">
         <a href={{ route('home') }}>
           <img src={{ asset('images/logo.png') }} class="h-5" alt="logo" />
+        </a>
+        <a href="https://tcc.edu.ph/" target="_blank">
+          <img src={{ asset('images/tcc-logo.png') }} class="size-14" alt="tcc-logo" />
         </a>
       </div>
       <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -22,7 +25,7 @@
               <a href="mailto:ditads@infosheet.dev" target="_blank" class="hover:underline">ditads@infosheet.dev</a>
             </li>
             <li class="mb-4">
-              <a href="tel:+639171281320" target="_blank" class="hover:underline">+63 917 128 1320</a>
+              <a href="tel:09171281320" target="_blank" class="hover:underline">+63 917 128 1320</a>
             </li>
           </ul>
         </div>
